@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GH / RB Calibration Converter</title>
+  <style>
+    :root{--accent:#e33;--muted:#aaa;--bg:#121212;--panel:#1e1e1e;--text:#eee}
+    body{font-family:Inter, system-ui, -apple-system, Arial; margin:0;background:var(--bg);color:var(--text)}
+    header{background:linear-gradient(90deg,#000 0%, #111 100%);color:#fff;padding:18px}
+    .container{max-width:960px;margin:20px auto;padding:18px;background:var(--panel);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+    label{display:block;margin-top:12px;font-weight:600}
+    input[type=number], select{width:120px;padding:8px;border-radius:6px;border:1px solid #444;background:#2b2b2b;color:var(--text)}
+    .row{display:flex;gap:12px;align-items:center}
+    .tabs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+    .tab{padding:10px 12px;border-radius:8px;background:#2b2b2b;cursor:pointer;color:var(--text)}
+    .tab.active{background:var(--accent);color:#fff}
+    .panel{margin-top:12px}
+    .game{padding:8px;border-bottom:1px solid #333}
+    .game strong{display:block;margin-bottom:4px}
+    .small{font-size:0.9rem;color:var(--muted)}
+    /* CRT toggle switch */
+    .crt-toggle{margin:12px 0;display:flex;align-items:center;gap:10px}
+    .switch{position:relative;display:inline-block;width:60px;height:34px}
+    .switch input{opacity:0;width:0;height:0}
+    .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#444;transition:.3s;border-radius:34px}
+    .slider:before{position:absolute;content:"";height:26px;width:26px;left:4px;bottom:4px;background:white;transition:.3s;border-radius:50%}
+    input:checked + .slider{background:var(--accent)}
+    input:checked + .slider:before{transform:translateX(26px)}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center">
+      <h1 style="font-size:18px;margin:0">GH / RB Calibration Converter</h1>
+      <div class="small">Converts audio/video calibration values between games & consoles</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="crt-toggle">
+      <label style="font-weight:600">CRT?</label>
+      <label class="switch">
+        <input type="checkbox" id="crtMode">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div id="inputSection">
+      <div class="row">
+        <div>
+          <label for="audio">Audio offset</label>
+          <input id="audio" type="number" value="0" step="1" />
+        </div>
+        <div>
+          <label for="video">Video offset</label>
+          <input id="video" type="number" value="0" step="1" />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:10px">
+        <div>
+          <label for="srcGame">Source Game</label>
+          <select id="srcGame"></select>
+        </div>
+        <div>
+          <label for="srcConsole">Source Console</label>
+          <select id="srcConsole"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs" id="consoleTabs"></div>
+    <div id="panels"></div>
+
+  </main>
+
+  <script>
+    const zeros = {
+      "Xbox 360": {
+      	"Rock Band Track Packs (after 1-2)": {a:0, v:0},
+      	"Rock Band 2": {a:0, v:0},
+      	"LEGO Rock Band": {a:0, v:0},
+      	"The Beatles: Rock Band": {a:0, v:0},
+      	"Green Day: Rock Band": {a:0, v:0},
+        "Rock Band 3": {a:0, v:27},
+        "Guitar Hero III: Legends of Rock / Guitar Hero: Aerosmith": {a:0, v:0},
+        "Guitar Hero World Tour - Band Hero": {a:0, v:0},
+        "Guitar Hero: Warriors of Rock": {a:0, v:0},
+        "DJ Hero": {a:0, v:0},
+        "DJ Hero 2": {a:0, v:0},
+        "Power Gig: Rise of the SixString": {a:0, v:0},
+        "Rock Revolution": {a:0, v:0},
+        "Rock of the Dead": {a:0, v:0}
+      },
+      "PS3": {
+      	"Rock Band Track Packs (after 1-2)": {a:0, v:0},
+      	"Rock Band 2": {a:0, v:0},
+      	"LEGO Rock Band": {a:0, v:0},
+      	"The Beatles: Rock Band": {a:0, v:0},
+      	"Green Day: Rock Band": {a:0, v:0},
+        "Rock Band 3": {a:0, v:27},
+        "Guitar Hero III: Legends of Rock / Guitar Hero: Aerosmith": {a:0, v:0},
+        "Guitar Hero World Tour - Band Hero": {a:0, v:0},
+        "Guitar Hero: Warriors of Rock": {a:0, v:0},
+        "DJ Hero": {a:0, v:0},
+        "DJ Hero 2": {a:0, v:0},
+        "SingStar Guitar": {a:0, v:0},
+        "Power Gig: Rise of the SixString": {a:0, v:0},
+        "Rock Revolution": {a:0, v:0},
+        "Rock of the Dead": {a:0, v:0}
+      },
+      "Wii": {
+        "Guitar Hero: Aerosmith": {a:43, v:48},
+        "Guitar Hero World Tour - Band Hero": {a:0, v:74},
+        "Guitar Hero: Warriors of Rock": {a:17, v:74},
+        "Rock Band Track Packs (after 1-2)": {a:-35, v:-15},
+        "Rock Band 2": {a:-15, v:55},
+        "LEGO Rock Band": {a:-5, v:40},
+        "The Beatles: Rock Band": {a:-35, v:60},
+        "Green Day: Rock Band": {a:-60, v:30},
+        "Rock Band 3": {a:-91, v:9},
+        "DJ Hero": {a:19, v:28},
+        "DJ Hero 2": {a:64, v:28}
+      },
+      "PS2": {
+      	"Guitar Hero: Aerosmith": {a:0, v:0},
+        "Guitar Hero World Tour - Band Hero": {a:0, v:0},
+        "Rock Band Track Packs (after 1-2)": {a:0, v:0},
+        "Rock Band 2": {a:0, v:0},
+        "DJ Hero": {a:0, v:0}
+      }
+    };
+
+    const consoles = Object.keys(zeros);
+    const srcConsole = document.getElementById('srcConsole');
+    const srcGame = document.getElementById('srcGame');
+    const consoleTabs = document.getElementById('consoleTabs');
+    const panels = document.getElementById('panels');
+    const audioInput = document.getElementById('audio');
+    const videoInput = document.getElementById('video');
+    const crtCheckbox = document.getElementById('crtMode');
+    const inputSection = document.getElementById('inputSection');
+
+    function populateConsoleSelectors(){
+      srcConsole.innerHTML = '';
+      consoles.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value=c; opt.textContent=c;
+        srcConsole.appendChild(opt);
+      });
+      populateSrcGames();
+    }
+
+    function populateSrcGames(){
+      const c = srcConsole.value;
+      const games = Object.keys(zeros[c] || {});
+      srcGame.innerHTML = '';
+      games.forEach(g => {
+        const opt=document.createElement('option');
+        opt.value=g; opt.textContent=g;
+        srcGame.appendChild(opt);
+      });
+    }
+
+    function buildTabs(){
+      consoleTabs.innerHTML='';
+      panels.innerHTML='';
+      consoles.forEach((c)=>{
+        const t = document.createElement('div');
+        t.className='tab';
+        t.textContent=c; t.dataset.console=c;
+        t.onclick = ()=>{
+          document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+          t.classList.add('active'); renderPanels(c);
+        };
+        consoleTabs.appendChild(t);
+
+        const panel = document.createElement('div');
+        panel.className='panel';
+        panel.id = 'panel-'+c.replace(/\s+/g,'_');
+        panel.style.display = 'none';
+        panels.appendChild(panel);
+      });
+    }
+
+    function renderPanels(activeConsole){
+      consoles.forEach(c=>{
+        const panel = document.getElementById('panel-'+c.replace(/\s+/g,'_'));
+        panel.style.display = (c===activeConsole) ? 'block' : 'none';
+      });
+
+      let audioVal = Number(audioInput.value) || 0;
+      let videoVal = Number(videoInput.value) || 0;
+      const srcC = srcConsole.value;
+      const srcG = srcGame.value;
+
+      const panel = document.getElementById('panel-'+activeConsole.replace(/\s+/g,'_'));
+      panel.innerHTML = '';
+
+      if(crtCheckbox.checked){
+        audioVal = 0;
+        videoVal = 0;
+      }
+
+      const srcZero = zeros[srcC]?.[srcG];
+      if(!srcZero && !crtCheckbox.checked) return;
+
+      const relAudio = crtCheckbox.checked ? 0 : audioVal - srcZero.a;
+      const relVideo = crtCheckbox.checked ? 0 : videoVal - srcZero.v;
+
+      const games = Object.keys(zeros[activeConsole] || {});
+      games.forEach(g=>{
+        const z = zeros[activeConsole][g];
+        const newA = Math.round(relAudio + z.a);
+        const newV = Math.round(relVideo + z.v);
+        const el = document.createElement('div');
+        el.className='game';
+        el.innerHTML = `<strong>${g}</strong>
+                        Audio: ${newA}  |  Video: ${newV}`;
+        panel.appendChild(el);
+      });
+    }
+
+    // Auto update
+    [audioInput, videoInput, srcConsole, srcGame].forEach(el=>{
+      el.addEventListener('input', ()=> {
+        const activeTab = document.querySelector('.tab.active');
+        if(activeTab) renderPanels(activeTab.dataset.console);
+      });
+    });
+
+    crtCheckbox.addEventListener('change', ()=>{
+      inputSection.style.display = crtCheckbox.checked ? 'none' : 'block';
+      const activeTab = document.querySelector('.tab.active');
+      if(activeTab) renderPanels(activeTab.dataset.console);
+    });
+
+    populateConsoleSelectors();
+    buildTabs();
+  </script>
+</body>
+</html>
