@@ -1,6 +1,6 @@
 const zeros = {
 	"Xbox 360": {
-		"Rock Band 2": { a: 4, v: 13 },
+		"Rock Band 2": { a: 6, v: 14 },
 		"Rock Band 3 (needs more testing)": { a: 0, v: 27 }
 	},
 	"PS3": {
