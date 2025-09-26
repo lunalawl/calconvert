@@ -18,7 +18,7 @@ const zeros = {
 		"LEGO Rock Band": { a: -5, v: 40 },
 		"The Beatles: Rock Band": { a: -35, v: 60 },
 		"Green Day: Rock Band": { a: -60, v: 30 },
-		"Rock Band 3 (needs more testing)": { a: -91, v: 9 },
+		"Rock Band 3": { a: -105, v: -7 },
 		"DJ Hero": { a: 19, v: 28 },
 		"DJ Hero 2": { a: 64, v: 28 }
 	},
