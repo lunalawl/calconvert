@@ -24,17 +24,6 @@
 		</div>
 
 		<div id="inputSection">
-			<div class="row">
-				<div>
-					<label for="audio">Audio offset</label>
-					<input id="audio" type="number" value="0" step="1" />
-				</div>
-				<div>
-					<label for="video">Video offset</label>
-					<input id="video" type="number" value="0" step="1" />
-				</div>
-			</div>
-
 			<div class="row row-top">
 				<div>
 					<label for="srcConsole">Source Console</label>
@@ -45,6 +34,34 @@
 					<select id="srcGame" disabled></select>
 				</div>
 			</div>
+
+			<div class="row" id="standardInputs">
+				<div>
+					<label for="audio">Audio offset</label>
+					<input id="audio" type="number" value="0" step="1" />
+				</div>
+				<div>
+					<label for="video">Video offset</label>
+					<input id="video" type="number" value="0" step="1" />
+				</div>
+			</div>
+			<div class="row" id="typeAVCompInputs" style="display:none;">
+				<div>
+					<label for="avoffset">A/V Offset</label>
+					<input id="avoffset" type="number" value="0" step="1" />
+				</div>
+				<div>
+					<label for="compensation">Lag Compensation</label>
+					<input id="compensation" type="number" value="0" step="1" />
+				</div>
+			</div>
+			<div class="row" id="typeCompInputs" style="display:none;">
+				<div>
+					<label for="typeCompin">Converting from this game is unsupported. Please use a game with two calibration numbers.</label>
+				</div>
+			</div>
+
+			
 		</div>
 
 		<div class="tabs" id="consoleTabs"></div>
@@ -54,7 +71,7 @@
 	<footer>
 		<div class="header-inner">
 			<h1>Research by lunalawl</h1>
-			<div class="small">Site mostly by ChatGPT, if a human is looking to rebuild this I would greatly appreciate it!</dif>
+			<div class="small">Site mostly by ChatGPT, if a human is looking to rebuild this I would greatly appreciate it! - <a href=https://github.com/lunalawl/calconvert> Source code (GitHub)</a></div>
 		</div>
 	</footer>
 
