@@ -13,7 +13,7 @@ const zeros = {
 		"Guitar Hero: Aerosmith": { a: 43, v: 48 },
 		"Guitar Hero World Tour - Band Hero": { a: 0, v: 74 },
 		"Guitar Hero: Warriors of Rock": { a: 17, v: 74 },
-		"Rock Band Track Packs (after 1-2)": { a: -35, v: -15 },
+		"Rock Band Track Packs (Vol. 2 and later)": { a: -35, v: -15 },
 		"Rock Band 2": { a: -15, v: 55 },
 		"LEGO Rock Band": { a: -5, v: 40 },
 		"The Beatles: Rock Band": { a: -35, v: 60 },
