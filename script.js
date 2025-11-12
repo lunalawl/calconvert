@@ -2,7 +2,8 @@
 const zeros = {
 	"Xbox 360": {
 		"Real Lag Values": { a: 0, v: 0 },
-		"Guitar Hero II (needs initial testing)": { a: 0, v: 0, typeComp: true },
+		"Guitar Hero II (EXPERIMENTAL, needs initial testing)": { a: 0, v: 0, typeComp: true },
+		"Rock Band": { a: -42, v: 9, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
 		"Rock Band 2": { a: 6, v: 14 },
 		"LEGO Rock Band": { a: -9, v: 1 },
 		"The Beatles: Rock Band": { a: 1, v: 15 },
