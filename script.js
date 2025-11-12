@@ -8,7 +8,7 @@ const zeros = {
 		"LEGO Rock Band": { a: -9, v: 1 },
 		"The Beatles: Rock Band": { a: 1, v: 15 },
 		"Green Day: Rock Band": { a: -58, v: -18 },
-		"Rock Band 3 (needs more testing)": { a: 0, v: 27 }
+		"Rock Band 3": { a: 0, v: 27 }
 	},
 	"PS3": {
 		"Real Lag Values": { a: 0, v: 0 },
