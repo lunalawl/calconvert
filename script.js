@@ -2,7 +2,8 @@
 const zeros = {
 	"Xbox 360": {
 		"Real Lag Values": { a: 0, v: 0 },
-		"Guitar Hero II (EXPERIMENTAL, needs initial testing)": { a: 0, v: 0, typeComp: true },
+		"Guitar Hero II (Vanilla)": { a: 9, v: 10, typeComp: true },
+		"Guitar Hero II (Manually Adjusted)": { a: 9, v: 10, typeAVComp: true },
 		"Rock Band": { a: -42, v: 9, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
 		"Rock Band 2": { a: 6, v: 14 },
 		"LEGO Rock Band": { a: -9, v: 1 },
@@ -222,7 +223,7 @@ function renderPanels(activeConsole) {
 			el.innerHTML = `<strong>${g}</strong>A/V Offset: ${av}  |  Lag Compensation: ${comp}`;
 		} else if (z.typeComp) {
 			const comp = Math.round((newA + newV) / 2);
-			el.innerHTML = `<strong>${g}</strong>Sync between: ${comp}  |  Sync to audio: ${newA}  |  Sync to video: ${newV}`;
+			el.innerHTML = `<strong>${g}</strong>Sync inputs halfway: ${comp}  |  Sync inputs to audio: ${newA}  |  Sync inputs to video: ${newV}`;
 		} else {
 			el.innerHTML = `<strong>${g}</strong>Audio: ${newA}  |  Video: ${newV}`;
 		}
