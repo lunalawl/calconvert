@@ -16,7 +16,7 @@ const zeros = {
 	},
 	"Wii": {
 		"Real Lag Values": { a: 0, v: 0 },
-		"Guitar Hero III: Legends of Rock": { a: 7, v: 38, typeComp: true },
+		"Guitar Hero III: Legends of Rock (NEEDS MORE TESTING)": { a: 7, v: 38, typeComp: true },
 		"Guitar Hero: Aerosmith": { a: 43, v: 48 },
 		"Guitar Hero World Tour - Band Hero": { a: 0, v: 74 },
 		"Guitar Hero: Warriors of Rock": { a: 17, v: 74 },
@@ -222,8 +222,9 @@ function renderPanels(activeConsole) {
 			const comp = newV;
 			el.innerHTML = `<strong>${g}</strong>A/V Offset: ${av}  |  Lag Compensation: ${comp}`;
 		} else if (z.typeComp) {
-			const comp = Math.round((newA + newV) / 2);
-			el.innerHTML = `<strong>${g}</strong>Sync inputs halfway: ${comp}  |  Sync inputs to audio: ${newA}  |  Sync inputs to video: ${newV}`;
+			const synctoaudio = newA - newV;
+			const comp = Math.round((synctoaudio + newV) / 2);
+			el.innerHTML = `<strong>${g}</strong>Sync inputs halfway: ${comp}  |  Sync inputs to audio: ${synctoaudio}  |  Sync inputs to video: ${newV}`;
 		} else {
 			el.innerHTML = `<strong>${g}</strong>Audio: ${newA}  |  Video: ${newV}`;
 		}
