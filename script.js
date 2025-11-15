@@ -3,7 +3,7 @@ const zeros = {
 	"Xbox 360": {
 		"Real Lag Values": { a: 0, v: 0 },
 		"Guitar Hero II (Vanilla)": { a: 9, v: 10, typeComp: true },
-		"Guitar Hero II (Manually Adjusted)": { a: 9, v: 10, typeAVComp: true },
+		"Guitar Hero II (Calibration Fix Mod)": { a: 9, v: 10 },
 		"Rock Band": { a: -42, v: 9, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
 		"Rock Band 2": { a: 6, v: 14 },
 		"LEGO Rock Band": { a: -9, v: 1 },
