@@ -8,9 +8,8 @@ const zeros = {
 		"Guitar Hero II (Calibration Fix)": { a: 8, v: 10 },
 
 		"Guitar Hero III & Aerosmith": { a: -9, v: 27 },
-		"Guitar Hero World Tour": { a: -33, v: 22 },
-		"Guitar Hero: Metallica": { a: -26, v: 21 },
-		"Guitar Hero Smash Hits": { a: -19, v: 21 },
+		"Guitar Hero World Tour": { a: -26, v: 22 },
+		"Guitar Hero: Metallica & Smash Hits": { a: -19, v: 21 },
 		"Guitar Hero: Van Halen": { a: -24, v: 21 },
 		"Guitar Hero 5 & Band Hero": { a: -6, v: 4 },
 		"Guitar Hero: Warriors of Rock": { a: 3, v: 22 },
