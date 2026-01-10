@@ -1,22 +1,52 @@
 // All games and their zero values
 const zeros = {
 	"Xbox 360": {
-		"Real Lag Values": { a: 0, v: 0 },
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+
 		"Guitar Hero II (Vanilla)": { a: 8, v: 10, typeComp: true },
-		"Guitar Hero II (Calibration Fix Mod)": { a: 8, v: 10 },
-		"Rock Band": { a: -42, v: 9, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
-		"Rock Band 2": { a: 6, v: 14 },
-		"LEGO Rock Band": { a: -9, v: 1 },
-		"The Beatles: Rock Band": { a: 1, v: 15 },
-		"Green Day: Rock Band": { a: -58, v: -18 },
+		"Guitar Hero II (Calibration Fix)": { a: 8, v: 10 },
+
+		"Guitar Hero III & Aerosmith": { a: -9, v: 27 },
+		"Guitar Hero World Tour": { a: -33, v: 22 },
+		"Guitar Hero: Metallica": { a: -26, v: 21 },
+		"Guitar Hero Smash Hits": { a: -19, v: 21 },
+		"Guitar Hero: Van Halen": { a: -24, v: 21 },
+		"Guitar Hero 5 & Band Hero": { a: -6, v: 4 },
+		"Guitar Hero: Warriors of Rock": { a: 3, v: 22 },
+
+		"Rock Band (Halfway)": { a: -21, v: 10, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
+		"Rock Band (Guitar)": { a: -22, v: 9, typeAVComp: true },
+		"Rock Band (Drums)": { a: -19, v: 12, typeAVComp: true }, // gtr plus 3
+
+		"Rock Band 2 (Halfway) (test more?)": { a: 0, v: 8 }, 
+		"Rock Band 2 (Guitar) (test more?)": { a: 6, v: 14 },
+		"Rock Band 2 (Drums) (test more?)": { a: -6, v: 2 }, // gtr minus 12 (former 18)
+
+		"LEGO Rock Band (Halfway)": { a: -11, v: -3 },
+		"LEGO Rock Band (Guitar)": { a: -7, v: 1 },
+		"LEGO Rock Band (Drums)": { a: -16, v: -8 }, // gtr minus 9 (former 15)
+
+		"The Beatles: Rock Band": { a: -17, v: 14 },
+
+		"Green Day: Rock Band (Halfway, good luck)": { a: -12, v: 13 },
+		"Green Day: Rock Band (Guitar)": { a: -37, v: -12 },
+		"Green Day: Rock Band (Drums)": { a: 13, v: 38 }, // gtr plus 50 (former 44)
+
 		"Rock Band 3": { a: 0, v: 27 },
-		"Rock Band Blitz": { a: -62, v: 5 }
+		
+		"Rock Band Blitz": { a: -61, v: 5 },
+
+		"Rock Revolution (experimental)": { a: 17, v: 17, typeAVComp: true },                               // kinda educated guess this game sucks
+		"Power Gig: Rise of the SixString (Swap +/- for A/V) (experimental)": { a: -3, v: -3, typeAVComp: true }  // educated guess this game sucks
 	},
 	"PS3": {
-		"Real Lag Values": { a: 0, v: 0 },
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 	},
 	"Wii": {
-		"Real Lag Values": { a: 0, v: 0 },
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 		"Guitar Hero III: Legends of Rock": { a: 7, v: 38, typeComp: true },
 		"Guitar Hero: Aerosmith": { a: 43, v: 48 },
 		"Guitar Hero World Tour - Band Hero": { a: 0, v: 74 },
@@ -32,9 +62,18 @@ const zeros = {
 		"DJ Hero 2": { a: 64, v: 28 }
 	},
 	"PS2": {
-		"Real Lag Values": { a: 0, v: 0 },
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 		"Guitar Hero II (Vanilla)": { a: -16, v: 11, typeComp: true },
-		"Guitar Hero II (Calibration Fix Mod)": { a: -16, v: 11 },
+		"Guitar Hero II (Calibration Fix)": { a: -16, v: 11 },
+	},
+	"PS4": {
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+		"Rock Band 4": { a: 93, v: 77 },
+		"Amplitude (2016) (Swap +/-) (experimental)": { a: 0, v: -2, typeComp: true },
+		"Hatsune Miku: Project DIVA Future Tone (Swap +/-) (experimental)": { a: -17, v: 0, typeComp: true },
+		"Taiko no Tatsujin: Drum Session! (experimental)": { a: 0, v: 0, typeAVComp: true }
 	}
 };
 
@@ -223,7 +262,7 @@ function renderPanels(activeConsole) {
 		if (z.typeAVComp) {
 			const av = newA - newV;
 			const comp = newV;
-			el.innerHTML = `<strong>${g}</strong>A/V Offset: ${av}  |  Lag Compensation: ${comp}`;
+			el.innerHTML = `<strong>${g}</strong>A/V Offset: ${av}  |  Input Offset: ${comp}`;
 		} else if (z.typeComp) {
 			const comp = Math.round((newA + newV) / 2);
 			el.innerHTML = `<strong>${g}</strong>Sync inputs halfway: ${comp}  |  Sync inputs to audio: ${newA}  |  Sync inputs to video: ${newV}`;
