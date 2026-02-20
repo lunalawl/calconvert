@@ -18,9 +18,9 @@ const zeros = {
 		"Rock Band (Guitar)": { a: -22, v: 9, typeAVComp: true },
 		"Rock Band (Drums)": { a: -19, v: 12, typeAVComp: true }, // gtr plus 3
 
-		"Rock Band 2 (Halfway) (test more?)": { a: 0, v: 8 }, 
-		"Rock Band 2 (Guitar) (test more?)": { a: 6, v: 14 },
-		"Rock Band 2 (Drums) (test more?)": { a: -6, v: 2 }, // gtr minus 12 (former 18)
+		"Rock Band 2 (Halfway)": { a: 0, v: 8 }, 
+		"Rock Band 2 (Guitar)": { a: 6, v: 14 },
+		"Rock Band 2 (Drums)": { a: -6, v: 2 }, // gtr minus 12 (former 18)
 
 		"LEGO Rock Band (Halfway)": { a: -11, v: -3 },
 		"LEGO Rock Band (Guitar)": { a: -7, v: 1 },
