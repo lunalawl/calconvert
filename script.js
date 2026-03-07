@@ -73,6 +73,11 @@ const zeros = {
 		"Amplitude (2016) (Swap +/-) (experimental)": { a: 0, v: -2, typeComp: true },
 		"Hatsune Miku: Project DIVA Future Tone (Swap +/-) (experimental)": { a: -17, v: 0, typeComp: true },
 		"Taiko no Tatsujin: Drum Session! (experimental)": { a: 0, v: 0, typeAVComp: true }
+	},
+	"PS5": {
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+		"Fortnite Festival (rough)": { a: 92, v: 28 }
 	}
 };
 
