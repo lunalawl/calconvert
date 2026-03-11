@@ -36,6 +36,8 @@ const zeros = {
 		
 		"Rock Band Blitz": { a: -61, v: 5 },
 
+		"DJ Hero 2": { a: 65, v: 45 },
+
 		"Rock Revolution (experimental)": { a: 17, v: 17, typeAVComp: true },                               // kinda educated guess this game sucks
 		"Power Gig: Rise of the SixString (Swap +/- for A/V) (experimental)": { a: -3, v: -3, typeAVComp: true }  // educated guess this game sucks
 	},
