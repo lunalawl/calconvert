@@ -36,6 +36,8 @@ const zeros = {
 		
 		"Rock Band Blitz": { a: -61, v: 5 },
 
+		// for santroller 200hz turntables, compensate 5ms
+		"DJ Hero": { a: 8, v: 27 },
 		"DJ Hero 2": { a: 60, v: 40 },
 
 		"Rock Revolution (experimental)": { a: 17, v: 17, typeAVComp: true },                               // kinda educated guess this game sucks
