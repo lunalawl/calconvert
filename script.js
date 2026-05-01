@@ -46,6 +46,7 @@ const zeros = {
 	"PS3": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+		"Rock Band 3": { a: -2, v: 32 }
 	},
 	"Wii": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
@@ -68,12 +69,13 @@ const zeros = {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 		"Guitar Hero II (Vanilla)": { a: -16, v: 11, typeComp: true },
-		"Guitar Hero II (Calibration Fix)": { a: -16, v: 11 },
+		"Guitar Hero II (Calibration Fix)": { a: -16, v: 11 }
 	},
 	"PS4": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
-		"Rock Band 4": { a: 93, v: 77 },
+		"Rock Band 4 (PS4 guitar)": { a: 93, v: 77 },
+		"Rock Band 4 (RB4DX per-controller lag: -6 PS4, +2 legacy)": { a: 98, v: 82 },
 		"Amplitude (2016) (Swap +/-) (experimental)": { a: 0, v: -2, typeComp: true },
 		"Hatsune Miku: Project DIVA Future Tone (Swap +/-) (experimental)": { a: -17, v: 0, typeComp: true },
 		"Taiko no Tatsujin: Drum Session! (experimental)": { a: 0, v: 0, typeAVComp: true }
