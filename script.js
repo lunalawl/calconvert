@@ -47,7 +47,7 @@ const zeros = {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 		"Rock Band 4": { a: 21, v: 52 },
-		"Fortnite Festival (rough)": { a: 115, v: 35 }
+		"Fortnite Festival": { a: 116, v: 37 }
 	},
 	"PS2": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
