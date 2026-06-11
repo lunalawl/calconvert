@@ -4,50 +4,53 @@ const zeros = {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
 
-		"Guitar Hero II (Vanilla)": { a: 8, v: 10, typeComp: true },
-		"Guitar Hero II (Calibration Fix)": { a: 8, v: 10 },
+		"Guitar Hero II (Vanilla)": { a: 0, v: 2, typeComp: true },
+		"Guitar Hero II (Calibration Fix)": { a: 0, v: 2 },
 
-		"Guitar Hero III & Aerosmith": { a: -9, v: 27 },
-		"Guitar Hero World Tour": { a: -18, v: 22 },
-		"Guitar Hero: Metallica & Smash Hits": { a: -19, v: 21 },
-		"Guitar Hero: Van Halen": { a: -24, v: 21 },
-		"Guitar Hero 5 & Band Hero": { a: -6, v: 4 },
-		"Guitar Hero: Warriors of Rock": { a: 3, v: 22 },
+		"Guitar Hero III & Aerosmith": { a: -17, v: 19 },
+		"Guitar Hero World Tour": { a: -26, v: 14 },
+		"Guitar Hero: Metallica & Smash Hits": { a: -27, v: 13 },
+		"Guitar Hero: Van Halen": { a: -32, v: 13 },
+		"Guitar Hero 5 & Band Hero": { a: -14, v: -4 },
+		"Guitar Hero: Warriors of Rock": { a: -5, v: 14 },
 
-		"Rock Band (Halfway)": { a: -21, v: 10, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
-		"Rock Band (Guitar)": { a: -22, v: 9, typeAVComp: true },
-		"Rock Band (Drums)": { a: -19, v: 12, typeAVComp: true }, // gtr plus 3
+		"Rock Band": { a: -30, v: 1, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
 
-		"Rock Band 2 (Halfway)": { a: 0, v: 8 }, 
-		"Rock Band 2 (Guitar)": { a: 6, v: 14 },
-		"Rock Band 2 (Drums)": { a: -6, v: 2 }, // gtr minus 12 (former 18)
+		"Rock Band 2 (Halfway)": { a: -9.5, v: -1.5 }, 
+		"Rock Band 2 (Guitar)": { a: -2, v: 6 },
+		"Rock Band 2 (Drums)": { a: -17, v: -9 }, // gtr minus 15 (former 18)
 
-		"LEGO Rock Band (Halfway)": { a: -11, v: -3 },
-		"LEGO Rock Band (Guitar)": { a: -7, v: 1 },
-		"LEGO Rock Band (Drums)": { a: -16, v: -8 }, // gtr minus 9 (former 15)
+		"LEGO Rock Band (Halfway)": { a: -21, v: -13 },
+		"LEGO Rock Band (Guitar)": { a: -15, v: -7 },
+		"LEGO Rock Band (Drums)": { a: -27, v: -19 }, // gtr minus 12 (former 15)
 
-		"The Beatles: Rock Band": { a: -17, v: 14 },
+		"The Beatles: Rock Band": { a: -25, v: 6 },
 
-		"Green Day: Rock Band (Halfway, good luck)": { a: -12, v: 13 },
-		"Green Day: Rock Band (Guitar)": { a: -37, v: -12 },
-		"Green Day: Rock Band (Drums)": { a: 13, v: 38 }, // gtr plus 50 (former 44)
+		"Green Day: Rock Band (Halfway, good luck)": { a: -21.5, v: 3.5 },
+		"Green Day: Rock Band (Guitar)": { a: -45, v: -20 },
+		"Green Day: Rock Band (Drums)": { a: 2, v: 27 }, // gtr plus 47 (former 44)
 
-		"Rock Band 3": { a: 0, v: 27 },
+		"Rock Band 3 (Halfway)": { a: 1, v: 28 },
+		"Rock Band 3 (Guitar)": { a: -8, v: 19 },
+		"Rock Band 3 (Drums)": { a: 10, v: 37 },
+
+		"Rock Band 3 (RB3DX Custom-Optimal)": { a: 0, v: 27 },
 		
-		"Rock Band Blitz": { a: -61, v: 5 },
+		"Rock Band Blitz (Official Controller)": { a: -61, v: 5 },
 
 		// for santroller 200hz turntables, compensate 5ms
 		"DJ Hero": { a: 8, v: 27 },
 		"DJ Hero 2": { a: 60, v: 40 },
 
-		"Rock Revolution (experimental)": { a: 17, v: 17, typeAVComp: true },                               // kinda educated guess this game sucks
-		"Power Gig: Rise of the SixString (Swap +/- for A/V) (experimental)": { a: -3, v: -3, typeAVComp: true }  // educated guess this game sucks
+		"Rock Revolution": { a: 10, v: 10, typeAVComp: true },                                 // kinda educated guess this game sucks
+		"Power Gig: Rise of the SixString (Swap +/- for A/V)": { a: -11, v: -11, typeAVComp: true }  // educated guess this game sucks
 	},
 	"Xbox One": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
-		"Rock Band 4": { a: 21, v: 52 },
-		"Fortnite Festival": { a: 116, v: 37 }
+		"Rock Band 4 (Low-Latency Guitar)": { a: 21, v: 52 },
+		"Rock Band 4 (Mad Catz/PDP Controller)": { a: 29, v: 60 },
+		"Fortnite Festival (Low-Latency)": { a: 116, v: 37 }
 	},
 	"PS2": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
@@ -58,14 +61,17 @@ const zeros = {
 	"PS3": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
-		"Rock Band 3": { a: -2, v: 32 }
+		"Rock Band 3 (Halfway)": { a: -2, v: 17 },
+		"Rock Band 3 (Guitar)": { a: -5, v: 14 },
+		"Rock Band 3 (Drums)": { a: 1, v: 20 },
+		"Rock Band 3 (RB3DX Custom-Optimal)": { a: 8, v: 27 }
 	},
 	"PS4": {
 		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
 		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
-		"Rock Band 4 (PS4 guitar)": { a: 93, v: 77 },
+		"Rock Band 4 (Low-Latency PS4 guitar)": { a: 93, v: 77 },
 		"Rock Band 4 (RB4DX per-controller lag: -6 PS4, +2 legacy)": { a: 98, v: 82 },
-		"Amplitude (2016) (Swap +/-) (experimental)": { a: 0, v: -2, typeComp: true },
+		"Amplitude (2016) (Swap +/-)": { a: 0, v: -2, typeComp: true },
 		"Hatsune Miku: Project DIVA Future Tone (Swap +/-) (experimental)": { a: -17, v: 0, typeComp: true },
 		"Taiko no Tatsujin: Drum Session! (experimental)": { a: 0, v: 0, typeAVComp: true }
 	},
@@ -281,7 +287,7 @@ function renderPanels(activeConsole) {
 			el.innerHTML = `<strong>${g}</strong>A/V Offset: ${av}  |  Input Offset: ${comp}`;
 		} else if (z.typeComp) {
 			const comp = Math.round((newA + newV) / 2);
-			el.innerHTML = `<strong>${g}</strong>Sync inputs halfway: ${comp}  |  Sync inputs to audio: ${newA}  |  Sync inputs to video: ${newV}`;
+			el.innerHTML = `<strong>${g}</strong>Sync halfway: ${comp}  |  Sync to audio: ${newA}  |  Sync to video: ${newV}`;
 		} else {
 			el.innerHTML = `<strong>${g}</strong>Audio: ${newA}  |  Video: ${newV}`;
 		}
