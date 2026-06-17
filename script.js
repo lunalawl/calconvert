@@ -16,23 +16,25 @@ const zeros = {
 
 		"Rock Band": { a: -30, v: 1, typeAVComp: true },  // To input: Audio = AV + Comp, Video = Comp
 
-		"Rock Band 2 (Halfway)": { a: -9.5, v: -1.5 }, 
-		"Rock Band 2 (Guitar)": { a: -2, v: 6 },
-		"Rock Band 2 (Drums)": { a: -17, v: -9 }, // gtr minus 15 (former 18)
+		"Rock Band 2 (Halfway)": { a: -6, v: 2 }, 
+		"Rock Band 2 (Guitar)": { a: 3, v: 11 },
+		"Rock Band 2 (Drums)": { a: -15, v: -7 },
 
-		"LEGO Rock Band (Halfway)": { a: -21, v: -13 },
+		"LEGO Rock Band (Halfway)": { a: -24, v: -16 },
 		"LEGO Rock Band (Guitar)": { a: -15, v: -7 },
-		"LEGO Rock Band (Drums)": { a: -27, v: -19 }, // gtr minus 12 (former 15)
+		"LEGO Rock Band (Drums)": { a: -33, v: -25 },
 
-		"The Beatles: Rock Band": { a: -25, v: 6 },
+		"The Beatles: Rock Band (Halfway)": { a: -34, v: -3 },
+		"The Beatles: Rock Band (Guitar)": { a: -25, v: 6 },
+		"The Beatles: Rock Band (Drums)": { a: -43, v: -12 },
 
 		"Green Day: Rock Band (Halfway, good luck)": { a: -21.5, v: 3.5 },
 		"Green Day: Rock Band (Guitar)": { a: -45, v: -20 },
 		"Green Day: Rock Band (Drums)": { a: 2, v: 27 }, // gtr plus 47 (former 44)
 
-		"Rock Band 3 (Halfway)": { a: 1, v: 28 },
+		"Rock Band 3 (Halfway)": { a: -17, v: 10 },
 		"Rock Band 3 (Guitar)": { a: -8, v: 19 },
-		"Rock Band 3 (Drums)": { a: 10, v: 37 },
+		"Rock Band 3 (Drums)": { a: -26, v: 1 },
 
 		"Rock Band 3 (RB3DX Custom-Optimal)": { a: 0, v: 27 },
 		
