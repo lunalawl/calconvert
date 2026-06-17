@@ -24,13 +24,13 @@ const zeros = {
 		"LEGO Rock Band (Guitar)": { a: -15, v: -7 },
 		"LEGO Rock Band (Drums)": { a: -33, v: -25 },
 
-		"The Beatles: Rock Band (Halfway)": { a: -34, v: -3 },
-		"The Beatles: Rock Band (Guitar)": { a: -25, v: 6 },
-		"The Beatles: Rock Band (Drums)": { a: -43, v: -12 },
+		"The Beatles: Rock Band": { a: -25, v: 6 },  // i don't believe this game has controller lag at all
 
-		"Green Day: Rock Band (Halfway, good luck)": { a: -21.5, v: 3.5 },
+		// fuck this game
+		"Green Day: Rock Band (Halfway, good luck)": { a: -18, v: 7 },
+		// my theory: internal gtr lag is +18 and drum lag is -36 instead of +36
 		"Green Day: Rock Band (Guitar)": { a: -45, v: -20 },
-		"Green Day: Rock Band (Drums)": { a: 2, v: 27 }, // gtr plus 47 (former 44)
+		"Green Day: Rock Band (Drums)": { a: 9, v: 34 },  // gtr plus 54, educated guess
 
 		"Rock Band 3 (Halfway)": { a: -17, v: 10 },
 		"Rock Band 3 (Guitar)": { a: -8, v: 19 },
