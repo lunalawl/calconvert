@@ -98,6 +98,13 @@ const zeros = {
 		"Rock Band 3": { a: -105, v: -7 },
 		"DJ Hero": { a: 19, v: 28 },
 		"DJ Hero 2": { a: 64, v: 28 }
+	},
+	"Switch 2 (Docked)": {
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+		"Fortnite Festival": { a: 194, v: 46 },
+		"Fortnite Festival (CRKD NS Mode, Wired/Dongle)": { a: 217, v: 69 },
+		"Fortnite Festival (CRKD NS Mode, Bluetooth)": { a: 221, v: 73 }  // i really really hate this game, educated guess
 	}
 };
 
