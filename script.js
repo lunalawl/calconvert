@@ -105,6 +105,13 @@ const zeros = {
 		"Fortnite Festival": { a: 194, v: 46 },
 		"Fortnite Festival (CRKD NS Mode, Wired/Dongle)": { a: 217, v: 69 },
 		"Fortnite Festival (CRKD NS Mode, Bluetooth)": { a: 221, v: 73 }  // i really really hate this game, educated guess
+	},
+	"Switch 2 (Handheld, enable 'CRT?')": {
+		//"Real Lag Values (traditional-style)": { a: 6, v: 3 },
+		//"Real Lag Values (av/input-style)": { a: 6, v: 3, typeAVComp: true },
+		"Fortnite Festival": { a: 200, v: 49 },
+		"Fortnite Festival (CRKD NS Mode, Wired/Dongle)": { a: 223, v: 72 },
+		"Fortnite Festival (CRKD NS Mode, Bluetooth)": { a: 227, v: 76 }  // i really really hate this game, educated guess
 	}
 };
 
