@@ -28,7 +28,6 @@ const zeros = {
 
 		// fuck this game
 		"Green Day: Rock Band (Halfway, good luck)": { a: -18, v: 7 },
-		// my theory: internal gtr lag is +18 and drum lag is -36 instead of +36
 		"Green Day: Rock Band (Guitar)": { a: -45, v: -20 },
 		"Green Day: Rock Band (Drums)": { a: 9, v: 34 },  // gtr plus 54, educated guess
 
@@ -38,9 +37,13 @@ const zeros = {
 
 		"Rock Band 3 (RB3DX Custom-Optimal)": { a: 0, v: 27 },
 		
-		"Rock Band Blitz (Official Controller)": { a: -61, v: 5 },
+		"Rock Band Blitz (Official controller)": { a: -61, v: 5 },
 
-		// for santroller 200hz turntables, compensate 5ms
+		"DJ Hero (Stock turntable)": { a: 8, v: 27 },
+		"DJ Hero (Santroller 200hz turntable)": { a: 5, v: 24 },
+		"DJ Hero 2 (Stock turntable)": { a: 60, v: 40 },
+		"DJ Hero 2 (Santroller 200hz turntable)": { a: 57, v: 37 },
+
 		"DJ Hero": { a: 8, v: 27 },
 		"DJ Hero 2": { a: 60, v: 40 },
 
