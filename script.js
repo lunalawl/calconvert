@@ -115,6 +115,20 @@ const zeros = {
 		"Fortnite Festival": { a: 200, v: 49 },
 		"Fortnite Festival (CRKD NS Mode, Wired/Dongle)": { a: 223, v: 72 },
 		"Fortnite Festival (CRKD NS Mode, Bluetooth)": { a: 227, v: 76 }  // i really really hate this game, educated guess
+	},
+	"Internal": {
+		"Real Lag Values (traditional-style)": { a: 0, v: 0 },
+		"Real Lag Values (av/input-style)": { a: 0, v: 0, typeAVComp: true },
+		"Neversoft Debug Skew": { a: 0, v: 0, typeNSint: true },
+		"GH3-GHA 360 Internal": { a: 66, v: 0, typeNSint: true },
+		"GHWT-WoR 360 Internal": { a: 61, v: 16, typeNSint: true },
+		"GH3 1.0 PS3 Internal": { a: 117, v: 0, typeNSint: true },
+		"GH3 Update / GHA PS3 Internal": { a: 157, v: 0, typeNSint: true },
+		"GHWT-era PS3 Internal": { a: 112, v: 12, typeNSint: true },
+		"GH5-GHWoR PS3 Internal": { a: 110, v: 18, typeNSint: true },
+		"GH3/GHA PS2/Wii Internal": { a: 41, v: 0, typeNSint: true },
+		"GHWT-WoR Wii Internal": { a: 38, v: -22, typeNSint: true },
+		"GHWT-BH PS2 Internal": { a: 60, v: 5, typeNSint: true },
 	}
 };
 
@@ -127,11 +141,14 @@ const audioInput = document.getElementById("audio");
 const videoInput = document.getElementById("video");
 const avInput = document.getElementById("avoffset");
 const compInput = document.getElementById("compensation");
+const gemInput = document.getElementById("gemoffset");
+const inputInput = document.getElementById("inputoffset");
 const crtCheckbox = document.getElementById("crtMode");
 const inputSection = document.getElementById("inputSection");
 const stdInputs = document.getElementById("standardInputs");
 const typeAVCompInputs = document.getElementById("typeAVCompInputs");
 const typeCompInputs = document.getElementById("typeCompInputs");
+const typeNSintInputs = document.getElementById("typeNSintInputs");
 
 function populateConsoleSelectors() {
 	srcConsole.innerHTML = "<option value='' disabled selected>-- Select Console --</option>";
@@ -186,14 +203,22 @@ function updateInputVisibility() {
 		stdInputs.style.display = "none";
 		typeAVCompInputs.style.display = "flex";
 		typeCompInputs.style.display = "none";
+		typeNSintInputs.style.display = "none";
 	} else if (z?.typeComp) {
 		stdInputs.style.display = "none";
 		typeAVCompInputs.style.display = "none";
 		typeCompInputs.style.display = "flex";
+		typeNSintInputs.style.display = "none";
+	} else if (z?.typeNSint) {
+		stdInputs.style.display = "none";
+		typeAVCompInputs.style.display = "none";
+		typeCompInputs.style.display = "none";
+		typeNSintInputs.style.display = "flex";
 	} else {
 		stdInputs.style.display = "flex";
 		typeAVCompInputs.style.display = "none";
 		typeCompInputs.style.display = "none";
+		typeNSintInputs.style.display = "none";
 	}
 }
 
@@ -279,6 +304,11 @@ function renderPanels(activeConsole) {
 		const comp = Number(compInput.value) || 0;
 		audioVal = comp;
 		videoVal = comp;
+	} else if (srcZero?.typeNSint) {
+		const gem = Number(gemInput.value) || 0;
+		const input = Number(inputInput.value) || 0;
+		audioVal = input * -1;
+		videoVal = (input * -1) - (gem * -1);
 	} else {
 		audioVal = Number(audioInput.value) || 0;
 		videoVal = Number(videoInput.value) || 0;
@@ -307,6 +337,10 @@ function renderPanels(activeConsole) {
 		} else if (z.typeComp) {
 			const comp = Math.round((newA + newV) / 2);
 			el.innerHTML = `<strong>${g}</strong>Sync halfway: ${comp}  |  Sync to audio: ${newA}  |  Sync to video: ${newV}`;
+		} else if (z.typeNSint) {
+			const gem = (newA - newV) * -1;
+			const input = newA * -1;
+			el.innerHTML = `<strong>${g}</strong>Gem Offset: ${gem}  |  Input Offset: ${input}`;
 		} else {
 			el.innerHTML = `<strong>${g}</strong>Audio: ${newA}  |  Video: ${newV}`;
 		}
@@ -315,7 +349,7 @@ function renderPanels(activeConsole) {
 }
 
 // Auto update
-[audioInput, videoInput, avInput, compInput].forEach(el => {
+[audioInput, videoInput, avInput, compInput, gemInput, inputInput].forEach(el => {
 	el.addEventListener("input", () => {
 		const activeTab = document.querySelector(".tab.active");
 		if (activeTab) renderPanels(activeTab.dataset.console);
