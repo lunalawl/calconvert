@@ -27,9 +27,9 @@ const zeros = {
 		"The Beatles: Rock Band": { a: -25, v: 6 },  // i don't believe this game has controller lag at all
 
 		// fuck this game
-		"Green Day: Rock Band (Halfway, good luck)": { a: -18, v: 7 },
+		"Green Day: Rock Band (Halfway, good luck)": { a: -22.5, v: 2.5 },
 		"Green Day: Rock Band (Guitar)": { a: -45, v: -20 },
-		"Green Day: Rock Band (Drums)": { a: 9, v: 34 },  // gtr plus 54, educated guess
+		"Green Day: Rock Band (Drums)": { a: 0, v: 25 },
 
 		"Rock Band 3 (Halfway)": { a: -17, v: 10 },
 		"Rock Band 3 (Guitar)": { a: -8, v: 19 },
