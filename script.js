@@ -150,34 +150,64 @@ const typeAVCompInputs = document.getElementById("typeAVCompInputs");
 const typeCompInputs = document.getElementById("typeCompInputs");
 const typeNSintInputs = document.getElementById("typeNSintInputs");
 
+
+const compDict = {
+	"srcGame": "_sg",
+	"srcConsole": "_c",
+	"activeConsoleTab": "_t",
+	"Xbox+360": "_360",
+	"Xbox+One": "_One",
+	"Rock+Band": "_rb",
+	"Guitar+Hero": "_gh",
+	"World+Tour": "_wt",
+	"audio": "_au",
+	"video": "_vi",
+	"%28RB3DX+Custom-Optimal%29": "_dxco",
+	"DJ+Hero": "_djh"
+}
+
+function compress(str) {
+	if (!str) {
+		return str;
+	}
+	for (const [key, value] of Object.entries(compDict)) {
+		str = str.replaceAll(key, value)
+	}
+	return str
+}
+
+function decompress(str) {
+	if (!str) {
+		return str;
+	}
+	for (const [key, value] of Object.entries(compDict)) {
+		str = str.replaceAll(value, key)
+	}
+	return str
+}
+
 // Usually fetches the value from localStorage but will pull it from URL query parameters if present
 function getStored(key) {
-	var param = new URLSearchParams(window.location.search);
-	console.log("get " + key);
+	var param = new URLSearchParams(decompress(window.location.search));
 	if (param.get(key)) {
-		console.log("got " + param.get(key) + " (url)");
 		return param.get(key)
 	} else {
-		console.log("got " + localStorage.getItem(key) + " (localStorage)");
 		return localStorage.getItem(key)
 	}
 }
 
 function setStored(key, value) {
-	console.log("set " + key + " = " + value)
 	localStorage.setItem(key, value)
-	var param = new URLSearchParams(window.location.search);
+	var param = new URLSearchParams(decompress(window.location.search));
 	param.set(key, value)
-	var newLoc = window.location.pathname + "?" + param.toString()
-	console.log(newLoc)
+	var newLoc = window.location.pathname + "?" + compress(param.toString())
 	window.history.replaceState(null, null, newLoc)
 }
 
 function unsetUrl(key) {
 	var param = new URLSearchParams(window.location.search);
 	param.delete(key)
-	var newLoc = window.location.pathname + "?" + param.toString()
-	console.log(newLoc)
+	var newLoc = window.location.pathname + "?" + compress(param.toString())
 	window.history.replaceState(null, null, newLoc)
 }
 
@@ -383,7 +413,7 @@ function renderPanels(activeConsole) {
 		unsetUrl("gem")
 		setStored("crt", true)
 	} else {
-		setStored("crt", false)
+		localStorage.setItem("crt", false)
 		unsetUrl("crt")
 	}
 
