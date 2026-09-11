@@ -150,6 +150,39 @@ const typeAVCompInputs = document.getElementById("typeAVCompInputs");
 const typeCompInputs = document.getElementById("typeCompInputs");
 const typeNSintInputs = document.getElementById("typeNSintInputs");
 
+// Usually fetches the value from localStorage but will pull it from URL query parameters if present
+function getStored(key) {
+	var param = new URLSearchParams(window.location.search);
+	console.log("get " + key);
+	if (param.get(key)) {
+		console.log("got " + param.get(key) + " (url)");
+		return param.get(key)
+	} else {
+		console.log("got " + localStorage.getItem(key) + " (localStorage)");
+		return localStorage.getItem(key)
+	}
+}
+
+function setStored(key, value) {
+	console.log("set " + key + " = " + value)
+	localStorage.setItem(key, value)
+	var param = new URLSearchParams(window.location.search);
+	param.set(key, value)
+	var newLoc = window.location.pathname + "?" + param.toString()
+	console.log(newLoc)
+	window.history.replaceState(null, null, newLoc)
+}
+
+function unsetUrl(key) {
+	var param = new URLSearchParams(window.location.search);
+	param.delete(key)
+	var newLoc = window.location.pathname + "?" + param.toString()
+	console.log(newLoc)
+	window.history.replaceState(null, null, newLoc)
+}
+
+crtCheckbox.checked = getStored("crt") == "true"
+
 function populateConsoleSelectors() {
 	srcConsole.innerHTML = "<option value='' disabled selected>-- Select Console --</option>";
 	consoles.forEach(c => {
@@ -160,15 +193,17 @@ function populateConsoleSelectors() {
 	});
 
 	// Restore console if saved
-	const savedConsole = localStorage.getItem("srcConsole");
+	const savedConsole = getStored("srcConsole");
 	if (savedConsole && consoles.includes(savedConsole)) {
 		srcConsole.value = savedConsole;
 		populateSrcGames(); // will also restore game if possible
+		setStored("srcConsole", savedConsole)
 	} else {
 		// Reset game select
 		srcGame.innerHTML = "<option value='' disabled selected>-- Select Game --</option>";
 		srcGame.disabled = true;
 	}
+
 }
 
 function populateSrcGames() {
@@ -183,10 +218,11 @@ function populateSrcGames() {
 		srcGame.appendChild(opt);
 	});
 	// Restore saved game if valid
-	const savedGame = localStorage.getItem("srcGame");
+	const savedGame = getStored("srcGame");
 	if (savedGame && games.includes(savedGame)) {
 		srcGame.value = savedGame;
 		updateInputVisibility(); // <-- ensure correct inputs show on reload
+		setStored("srcGame", savedGame)
 	}
 	srcGame.disabled = false;
 }
@@ -204,6 +240,12 @@ function updateInputVisibility() {
 		typeAVCompInputs.style.display = "flex";
 		typeCompInputs.style.display = "none";
 		typeNSintInputs.style.display = "none";
+		if (getStored("av")) {
+			avInput.value = getStored("av")
+		}
+		if (getStored("input")) {
+			compInput.value = getStored("input")
+		}
 	} else if (z?.typeComp) {
 		stdInputs.style.display = "none";
 		typeAVCompInputs.style.display = "none";
@@ -214,11 +256,23 @@ function updateInputVisibility() {
 		typeAVCompInputs.style.display = "none";
 		typeCompInputs.style.display = "none";
 		typeNSintInputs.style.display = "flex";
+		if (getStored("gem")) {
+			gemInput.value = getStored("gem")
+		}
+		if (getStored("input")) {
+			compInput = getStored("input")
+		}
 	} else {
 		stdInputs.style.display = "flex";
 		typeAVCompInputs.style.display = "none";
 		typeCompInputs.style.display = "none";
 		typeNSintInputs.style.display = "none";
+		if (getStored("audio")) {
+			audioInput.value = getStored("audio")
+		}
+		if (getStored("video")) {
+			videoInput.value = getStored("video")
+		}
 	}
 }
 
@@ -230,14 +284,14 @@ srcGame.addEventListener("change", () => {
 
 // Save on change
 srcConsole.addEventListener("change", () => {
-	localStorage.setItem("srcConsole", srcConsole.value);
+	setStored("srcConsole", srcConsole.value);
 	populateSrcGames();
 	const activeTab = document.querySelector(".tab.active");
 	if (activeTab) renderPanels(activeTab.dataset.console);
 });
 
 srcGame.addEventListener("change", () => {
-	localStorage.setItem("srcGame", srcGame.value);
+	setStored("srcGame", srcGame.value);
 	const activeTab = document.querySelector(".tab.active");
 	if (activeTab) renderPanels(activeTab.dataset.console);
 });
@@ -253,7 +307,7 @@ function buildTabs() {
 		t.onclick = () => {
 			document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
 			t.classList.add("active");
-			localStorage.setItem("activeConsoleTab", c); // save tab selection
+			setStored("activeConsoleTab", c); // save tab selection
 			renderPanels(c);
 		};
 		consoleTabs.appendChild(t);
@@ -266,13 +320,14 @@ function buildTabs() {
 	});
 
 	// Restore previously active tab if saved
-	const savedTab = localStorage.getItem("activeConsoleTab");
+	const savedTab = getStored("activeConsoleTab");
 	if (savedTab && consoles.includes(savedTab)) {
 		const tabEl = [...document.querySelectorAll(".tab")].find(t => t.dataset.console === savedTab);
 		if (tabEl) {
 			tabEl.classList.add("active");
 			renderPanels(savedTab);
 		}
+		setStored("activeConsoleTab", savedTab)
 	}
 }
 
@@ -300,6 +355,8 @@ function renderPanels(activeConsole) {
 		const comp = Number(compInput.value) || 0;
 		audioVal = av + comp;
 		videoVal = comp;
+		setStored("av", av);
+		setStored("input", comp);
 	} else if (srcZero?.typeComp) {
 		const comp = Number(compInput.value) || 0;
 		audioVal = comp;
@@ -309,13 +366,25 @@ function renderPanels(activeConsole) {
 		const input = Number(inputInput.value) || 0;
 		audioVal = input * -1;
 		videoVal = (input * -1) - (gem * -1);
+		setStored("gem", gem);
+		setStored("input", input)
 	} else {
 		audioVal = Number(audioInput.value) || 0;
 		videoVal = Number(videoInput.value) || 0;
+		setStored("audio", audioVal);
+		setStored("video", videoVal);
 	}
 
 	if (crtCheckbox.checked) {
 		audioVal = 0; videoVal = 0;
+		unsetUrl("audio")
+		unsetUrl("video")
+		unsetUrl("input")
+		unsetUrl("gem")
+		setStored("crt", true)
+	} else {
+		setStored("crt", false)
+		unsetUrl("crt")
 	}
 
 	const relAudio = crtCheckbox.checked ? 0 : audioVal - (srcZero?.a || 0);
